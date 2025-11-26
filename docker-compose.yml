@@ -1,0 +1,14 @@
+services:
+  nextjs:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0 
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: 100
+    volumes:
+      - .:/app                 
+      - /app/node_modules      
+    command: npm run dev
