@@ -1,14 +1,16 @@
 import { MovieDTO } from "../shared/models/movie.model";
-
-export const TMDB_API_BASE = "https://api.themoviedb.org/3";
+import { TMDB_API_BASE } from "../utils/utils";
 
 export async function getPopularMovies(page: number = 1): Promise<MovieDTO> {
-  const res = await fetch(`${TMDB_API_BASE}/movie/popular?language=en-US&page=${page}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-    },
-    cache: "force-cache",
-  });
+  const res = await fetch(
+    `${TMDB_API_BASE}/movie/popular?language=en-US&page=${page}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+      },
+      cache: "force-cache",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch TMDB popular movies");
@@ -21,12 +23,14 @@ export async function searchMovies(query: string) {
   if (!query) return [];
 
   const res = await fetch(
-    `${TMDB_API_BASE}/search/movie?language=en-US&query=${encodeURIComponent(query)}`,
+    `${TMDB_API_BASE}/search/movie?language=en-US&query=${encodeURIComponent(
+      query
+    )}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
       },
-      cache: "no-store"
+      cache: "no-store",
     }
   );
 
