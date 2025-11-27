@@ -4,6 +4,7 @@ import Card from "@/app/shared/components/Card/card.component";
 import Grid from "@/app/shared/components/Grid/grid.component";
 import { MovieDTO } from "@/app/shared/models/movie.model";
 import usePopularMovies from "./homepage.hooks";
+import Search from "@/app/shared/components/Search/search.component";
 
 interface HomePageProps {
   movies: MovieDTO;
@@ -16,6 +17,7 @@ export default function HomePage({ movies }: HomePageProps) {
 
   return (
     <div className="flex flex-col w-full">
+      <Search></Search>
       <Grid gap="gap-6" minColWidth="200px">
         {data?.pages.map((page) =>
           page.results.map((movie) => <Card movie={movie} key={movie.id} />)
