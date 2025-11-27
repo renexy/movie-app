@@ -1,7 +1,9 @@
-const TMDB_API_BASE = "https://api.themoviedb.org/3";
+import { MovieDTO } from "../shared/models/movie.model";
 
-export async function getPopularMovies() {
-  const res = await fetch(`${TMDB_API_BASE}/movie/popular?language=en-US`, {
+export const TMDB_API_BASE = "https://api.themoviedb.org/3";
+
+export async function getPopularMovies(page: number = 1): Promise<MovieDTO> {
+  const res = await fetch(`${TMDB_API_BASE}/movie/popular?language=en-US&page=${page}`, {
     headers: {
       Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
     },
