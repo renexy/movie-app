@@ -23,7 +23,7 @@ export default function MovieInfo({ movie }: { movie: Movie }) {
         </div>
 
         <div className="flex-1 flex flex-col gap-4 justify-center">
-          <h1 className="text-4xl font-bold">{movie.title}</h1>
+          <h1 className="text-4xl font-bold">{movie.title || "/"}</h1>
 
           <div className="flex items-center gap-2 text-yellow-400">
             {" "}
@@ -37,15 +37,15 @@ export default function MovieInfo({ movie }: { movie: Movie }) {
               </span>
             ))}
             <span className="ml-2 text-gray-300">
-              {`(${movie.vote_count} reviews)`}
+              {`(${movie.vote_count || "/"} reviews)`}
             </span>
           </div>
 
-          <p className="text-gray-200 text-lg">{movie.overview}</p>
+          <p className="text-gray-200 text-lg">{movie.overview || "/"}</p>
 
           <div className="flex flex-col gap-1 text-gray-400 text-sm">
-            <span>Release Date: {movie.release_date}</span>
-            <span>Votes: {movie.vote_count}</span>
+            <span>Release Date: {movie.release_date || "/"}</span>
+            <span>Votes: {movie.vote_count || "/"}</span>
             {movie.adult && (
               <span className="text-red-600 font-bold">18+ Adult</span>
             )}
